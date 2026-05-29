@@ -1,0 +1,803 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>YesInData — Yassine L. | Actuary & Quant Engineer</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=IBM+Plex+Mono:wght@400;500&family=IBM+Plex+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@tabler/icons-webfont@3.19.0/dist/tabler-icons.min.css">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ink:#0a0a0b;--paper:#0d0f12;--surface:#131619;--surface2:#1a1e23;--surface3:#22272e;
+  --accent:#c9a84c;--accent2:#e8c878;--accent-dim:#8a6e2f;
+  --white:#f0ede8;--muted:#7a8290;--muted2:#55606e;
+  --border:#2a3040;--border2:#1e2530;
+  --ok:#2d7a4f;--ok-bg:#0f2a1a;--err:#a33030;--err-bg:#2a0f0f;
+}
+html{scroll-behavior:smooth}
+body{font-family:'IBM Plex Sans',sans-serif;background:var(--paper);color:var(--white);line-height:1.6;overflow-x:hidden}
+
+/* NAV */
+nav{background:rgba(13,15,18,0.97);border-bottom:1px solid var(--border);padding:0 4rem;display:flex;align-items:center;justify-content:space-between;height:68px;position:fixed;top:0;left:0;right:0;z-index:200;backdrop-filter:blur(12px)}
+.nav-brand{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white);text-decoration:none}
+.nav-brand span{color:var(--accent)}
+.nav-sub{font-size:.65rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);margin-left:.5rem}
+.nav-menu{display:flex;gap:2rem;list-style:none}
+.nav-menu a{font-size:.73rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:var(--muted);text-decoration:none;transition:color .2s;padding:.2rem 0;border-bottom:1px solid transparent}
+.nav-menu a:hover{color:var(--white);border-bottom-color:var(--accent)}
+.nav-hire{font-size:.7rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--ink);padding:.5rem 1.3rem;text-decoration:none;transition:background .2s}
+.nav-hire:hover{background:var(--accent2)}
+
+/* HERO */
+.hero{min-height:100vh;display:grid;grid-template-columns:1.2fr 0.8fr;padding-top:68px;border-bottom:1px solid var(--border)}
+.hero-main{padding:5rem 4rem;display:flex;flex-direction:column;justify-content:center;border-right:1px solid var(--border);position:relative}
+.hero-main::before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(ellipse at 20% 50%,rgba(201,168,76,.04) 0%,transparent 70%);pointer-events:none}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;font-family:'IBM Plex Mono',monospace;font-size:.67rem;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem}
+.badge-dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.2}}
+.hero-h1{font-family:'Playfair Display',serif;font-size:clamp(2.6rem,4.5vw,4rem);line-height:1.08;letter-spacing:-.02em;margin-bottom:1.5rem;color:var(--white)}
+.hero-h1 em{font-style:italic;color:var(--accent)}
+.hero-sub{font-size:1rem;line-height:1.85;color:var(--muted);max-width:500px;margin-bottom:2.5rem}
+.hero-actions{display:flex;gap:1rem;flex-wrap:wrap;margin-bottom:2.5rem}
+.btn-gold{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--ink);padding:.8rem 2rem;text-decoration:none;border:none;cursor:pointer;transition:background .2s;display:inline-block}
+.btn-gold:hover{background:var(--accent2)}
+.btn-outline{font-size:.75rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:transparent;color:var(--white);padding:.8rem 2rem;text-decoration:none;border:1px solid var(--border);transition:all .2s;display:inline-block}
+.btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+.platform-links{display:flex;gap:.6rem;flex-wrap:wrap}
+.pl-link{display:inline-flex;align-items:center;gap:6px;font-size:.7rem;font-weight:500;letter-spacing:.06em;padding:.4rem .9rem;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all .2s;background:var(--surface)}
+.pl-link i{font-size:15px}
+.pl-fiverr:hover{border-color:#1dbf73;color:#1dbf73}
+.pl-upwork:hover{border-color:#6fda44;color:#6fda44}
+.pl-freelancer:hover{border-color:#29b2fe;color:#29b2fe}
+.pl-linkedin:hover{border-color:#0a66c2;color:#0a66c2}
+
+/* HERO ASIDE */
+.hero-aside{background:var(--surface);display:flex;flex-direction:column}
+.profile-photo{width:100%;aspect-ratio:3/4;overflow:hidden;position:relative}
+.profile-photo img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block}
+.profile-overlay{position:absolute;bottom:0;left:0;right:0;padding:1.5rem;background:linear-gradient(transparent,rgba(13,15,18,.95))}
+.profile-name{font-family:'Playfair Display',serif;font-size:1.2rem;color:var(--white)}
+.profile-title{font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);margin-top:.2rem}
+.aside-stats{padding:1.5rem;display:flex;flex-direction:column;gap:0;flex:1}
+.aside-stat{padding:.9rem 0;border-top:1px solid var(--border)}
+.aside-label{font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:.3rem}
+.aside-val{font-family:'Playfair Display',serif;font-size:1.5rem;color:var(--white);line-height:1}
+.aside-note{font-size:.74rem;color:var(--muted);margin-top:.2rem}
+
+/* TICKER */
+.ticker{background:var(--accent);padding:.65rem 0;overflow:hidden;white-space:nowrap}
+.ticker-inner{display:inline-block;animation:ticker 35s linear infinite}
+.ticker-item{display:inline-block;font-family:'IBM Plex Mono',monospace;font-size:.67rem;letter-spacing:.1em;text-transform:uppercase;color:var(--ink);margin:0 2rem;font-weight:500}
+.ticker-sep{color:rgba(0,0,0,.3);margin:0 .3rem}
+@keyframes ticker{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+
+/* SECTIONS */
+section{padding:5rem 4rem}
+.sec-eyebrow{font-family:'IBM Plex Mono',monospace;font-size:.67rem;letter-spacing:.16em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.sec-title{font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.6rem);letter-spacing:-.02em;line-height:1.1;margin-bottom:2.5rem;color:var(--white)}
+
+/* SERVICES */
+.svc-sec{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.svc-grid{display:grid;grid-template-columns:repeat(3,1fr);border:1px solid var(--border)}
+.svc{padding:2rem;border-right:1px solid var(--border);border-bottom:1px solid var(--border);transition:background .25s}
+.svc:hover{background:var(--surface2)}
+.svc:nth-child(3n){border-right:none}
+.svc:nth-child(4),.svc:nth-child(5),.svc:nth-child(6){border-bottom:none}
+.svc-num{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--muted2);margin-bottom:.8rem}
+.svc-icon{font-size:22px;color:var(--accent);margin-bottom:.7rem}
+.svc-title{font-family:'Playfair Display',serif;font-size:1.1rem;margin-bottom:.5rem;color:var(--white)}
+.svc-desc{font-size:.83rem;color:var(--muted);line-height:1.75}
+.svc-tags{display:flex;flex-wrap:wrap;gap:4px;margin-top:.9rem}
+.stag{font-size:.65rem;font-weight:500;padding:2px 8px;border:1px solid var(--border);color:var(--muted)}
+
+/* PROJECTS */
+.proj-sec{background:var(--paper)}
+.proj-list{border:1px solid var(--border)}
+.proj-row{border-bottom:1px solid var(--border)}
+.proj-row:last-child{border-bottom:none}
+.proj-header{display:grid;grid-template-columns:90px 1fr auto;align-items:center;gap:1.5rem;padding:1.6rem 2rem;cursor:pointer;transition:background .2s;user-select:none;background:var(--surface)}
+.proj-header:hover{background:var(--surface2)}
+.proj-header.open{background:var(--surface2);border-bottom:1px solid var(--border)}
+.proj-idx{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;color:var(--muted2)}
+.proj-name{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white)}
+.proj-cat{font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent)}
+.proj-tags-row{display:flex;gap:4px;flex-wrap:wrap;margin-top:.3rem}
+.ptag{font-size:.63rem;font-weight:500;padding:2px 7px;background:var(--surface3);color:var(--muted);border:1px solid var(--border)}
+.proj-toggle{display:flex;align-items:center;gap:.5rem;font-size:.7rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);white-space:nowrap}
+.proj-toggle i{font-size:16px;transition:transform .3s}
+.proj-header.open .proj-toggle i{transform:rotate(180deg)}
+.proj-header.open .proj-toggle{color:var(--accent)}
+
+/* PROJECT DETAIL */
+.proj-detail{display:none;background:var(--surface)}
+.proj-detail.open{display:block}
+
+/* IMAGE STRIP */
+.img-strip-wrap{overflow:hidden;position:relative;height:200px;border-bottom:1px solid var(--border)}
+.img-strip-track{display:flex;height:100%;animation:imgscroll 22s linear infinite}
+.img-strip-track:hover{animation-play-state:paused}
+@keyframes imgscroll{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
+.img-strip-item{flex:0 0 280px;height:100%;position:relative;border-right:1px solid var(--border);overflow:hidden}
+.img-strip-item img{width:100%;height:100%;object-fit:cover;display:block;filter:brightness(.7)}
+.img-strip-item:hover img{filter:brightness(.9);transition:filter .3s}
+.img-strip-caption{position:absolute;bottom:0;left:0;right:0;padding:.5rem .8rem;background:rgba(13,15,18,.85);font-family:'IBM Plex Mono',monospace;font-size:.6rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+
+.proj-detail-body{display:grid;grid-template-columns:1fr 1.2fr;gap:2.5rem;padding:2rem}
+.detail-label{font-size:.66rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:.6rem;padding-bottom:.5rem;border-bottom:1px solid var(--border)}
+.detail-text{font-size:.88rem;line-height:1.85;color:var(--muted)}
+.results-row{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin:1.2rem 0}
+.res-card{background:var(--surface2);border:1px solid var(--border);padding:.8rem 1rem}
+.res-val{font-family:'Playfair Display',serif;font-size:1.4rem;color:var(--accent);line-height:1}
+.res-label{font-size:.68rem;color:var(--muted2);margin-top:.25rem;line-height:1.45}
+.method-text{font-size:.85rem;line-height:1.85;color:var(--muted);margin-top:.8rem}
+.method-text strong{color:var(--white);font-weight:600}
+.tool-list{display:flex;flex-wrap:wrap;gap:4px;margin-top:.8rem}
+.tool-chip{display:inline-flex;align-items:center;gap:5px;font-size:.68rem;font-weight:500;padding:3px 9px;background:var(--surface2);color:var(--accent);border:1px solid var(--accent-dim)}
+.tool-chip i{font-size:13px}
+
+/* CERTIFICATIONS */
+.cert-sec{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.cert-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+.cert-card{background:var(--surface2);border:1px solid var(--border);padding:1.8rem;transition:border-color .2s}
+.cert-card:hover{border-color:var(--accent-dim)}
+.cert-icon{font-size:24px;color:var(--accent);margin-bottom:1rem}
+.cert-title{font-family:'Playfair Display',serif;font-size:1rem;color:var(--white);margin-bottom:.3rem}
+.cert-org{font-size:.73rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--accent);margin-bottom:.5rem}
+.cert-desc{font-size:.82rem;color:var(--muted);line-height:1.7}
+.cert-badge{display:inline-block;margin-top:.8rem;font-size:.65rem;font-weight:600;letter-spacing:.08em;text-transform:uppercase;padding:3px 9px;background:var(--surface3);color:var(--muted2);border:1px solid var(--border)}
+
+/* ABOUT */
+.about-sec{background:var(--paper);border-top:1px solid var(--border)}
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.about-text p{font-size:.93rem;line-height:1.9;color:var(--muted);margin-bottom:1.1rem}
+.creds{display:flex;flex-direction:column}
+.cred{padding:1.1rem 0;border-bottom:1px solid var(--border);display:flex;gap:1rem;align-items:flex-start}
+.cred:last-child{border-bottom:none}
+.cred-ico{width:36px;height:36px;background:var(--surface2);border:1px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.cred-ico i{font-size:16px;color:var(--accent)}
+.cred-title{font-size:.86rem;font-weight:600;margin-bottom:.15rem;color:var(--white)}
+.cred-desc{font-size:.79rem;color:var(--muted);line-height:1.65}
+
+/* SKILLS */
+.skills-sec{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.sk-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:1.5rem}
+.sk-block{background:var(--surface2);border:1px solid var(--border);padding:1.5rem}
+.sk-block-title{font-size:.7rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:1rem;padding-bottom:.7rem;border-bottom:1px solid var(--border)}
+.sk-list{display:flex;flex-direction:column;gap:.6rem}
+.sk-row{display:flex;align-items:center;gap:.8rem}
+.sk-name-wrap{display:flex;align-items:center;gap:6px;min-width:130px}
+.sk-icon{font-size:15px;color:var(--accent)}
+.sk-name{font-size:.83rem;font-weight:500;color:var(--white)}
+.sk-bar-bg{flex:1;height:3px;background:var(--surface3)}
+.sk-bar{height:3px;background:var(--accent)}
+.sk-lvl{font-family:'IBM Plex Mono',monospace;font-size:.6rem;color:var(--muted2);min-width:52px;text-align:right}
+
+/* CONTACT */
+.contact-sec{background:var(--surface);border-top:1px solid var(--border)}
+.c-grid{display:grid;grid-template-columns:1fr 1fr;gap:4rem;align-items:start}
+.c-intro{font-size:.93rem;line-height:1.85;color:var(--muted);margin-bottom:1.8rem}
+.c-platforms{margin-bottom:2rem}
+.c-plat-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted2);margin-bottom:.75rem}
+.c-plat-links{display:flex;gap:.6rem;flex-wrap:wrap}
+.c-plat-link{display:inline-flex;align-items:center;gap:6px;font-size:.72rem;font-weight:500;letter-spacing:.06em;text-transform:uppercase;padding:.45rem 1rem;text-decoration:none;border:1px solid var(--border);color:var(--muted);transition:all .2s;background:var(--surface2)}
+.c-plat-link i{font-size:15px}
+.c-fiverr:hover{border-color:#1dbf73;color:#1dbf73}
+.c-upwork:hover{border-color:#6fda44;color:#6fda44}
+.c-freelancer:hover{border-color:#29b2fe;color:#29b2fe}
+.c-linkedin:hover{border-color:#0a66c2;color:#0a66c2}
+.c-items{display:flex;flex-direction:column;gap:.9rem}
+.c-item{display:flex;gap:1rem;align-items:flex-start}
+.c-item-icon{font-size:16px;color:var(--accent);margin-top:1px;flex-shrink:0}
+.c-item-label{font-family:'IBM Plex Mono',monospace;font-size:.62rem;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2);min-width:65px}
+.c-item-val{font-size:.86rem;color:var(--muted)}
+
+/* FORM */
+.c-form{display:flex;flex-direction:column;gap:.85rem}
+.f2{display:grid;grid-template-columns:1fr 1fr;gap:.85rem}
+.fg{display:flex;flex-direction:column;gap:.3rem}
+.fg label{font-size:.63rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted2)}
+.fg label .req{color:var(--accent);margin-left:2px}
+.fg input,.fg select,.fg textarea{font-family:'IBM Plex Sans',sans-serif;font-size:.88rem;background:var(--surface2);color:var(--white);border:1px solid var(--border);padding:.65rem .9rem;outline:none;transition:border .2s;-webkit-appearance:none}
+.fg input::placeholder,.fg textarea::placeholder{color:var(--muted2)}
+.fg input:focus,.fg select:focus,.fg textarea:focus{border-color:var(--accent-dim)}
+.fg select option{background:var(--surface2)}
+.fg textarea{resize:none;min-height:100px}
+.fg.error input,.fg.error select,.fg.error textarea{border-color:var(--err)}
+.field-err{font-size:.68rem;color:#e05555;margin-top:.25rem;display:none}
+.fg.error .field-err{display:block}
+.btn-send{font-size:.73rem;font-weight:600;letter-spacing:.1em;text-transform:uppercase;background:var(--accent);color:var(--ink);padding:.8rem 2rem;border:none;cursor:pointer;align-self:flex-start;transition:background .2s}
+.btn-send:hover{background:var(--accent2)}
+.btn-send:disabled{opacity:.5;cursor:not-allowed}
+.form-msg{display:none;padding:.8rem 1rem;font-size:.84rem;margin-top:.5rem;border:1px solid}
+.form-msg.success{background:var(--ok-bg);color:#5fca8a;border-color:var(--ok)}
+.form-msg.error{background:var(--err-bg);color:#e05555;border-color:var(--err)}
+
+/* FOOTER */
+footer{background:var(--ink);border-top:1px solid var(--border);padding:1.6rem 4rem;display:flex;justify-content:space-between;align-items:center}
+.f-brand{font-family:'Playfair Display',serif;font-size:1.1rem;color:var(--white)}
+.f-brand span{color:var(--accent)}
+.f-links{display:flex;gap:2rem}
+.f-links a{color:var(--muted2);text-decoration:none;font-size:.7rem;letter-spacing:.08em;text-transform:uppercase;transition:color .2s}
+.f-links a:hover{color:var(--accent)}
+.f-copy{font-size:.7rem;color:var(--muted2)}
+
+@media(max-width:900px){
+  nav{padding:0 1.2rem}.nav-menu{display:none}
+  .hero{grid-template-columns:1fr}.hero-aside{display:none}.hero-main{padding:3rem 1.5rem}
+  section{padding:3rem 1.5rem}.svc-grid{grid-template-columns:1fr}
+  .svc:nth-child(n){border-right:none}
+  .proj-header{grid-template-columns:60px 1fr auto;padding:1.2rem}
+  .proj-detail-body{grid-template-columns:1fr}
+  .results-row{grid-template-columns:1fr 1fr}
+  .cert-grid{grid-template-columns:1fr}.about-grid{grid-template-columns:1fr}
+  .sk-grid{grid-template-columns:1fr}.c-grid{grid-template-columns:1fr}.f2{grid-template-columns:1fr}
+  footer{flex-direction:column;gap:.8rem;text-align:center;padding:1.5rem}
+  .f-links{flex-wrap:wrap;justify-content:center}
+}
+</style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-brand" href="#"><span>Yes</span>InData<span class="nav-sub">Yassine L.</span></a>
+  <ul class="nav-menu">
+    <li><a href="#services">Services</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#certifications">Certifications</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a class="nav-hire" href="#contact">Hire Me</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-main">
+    <div class="hero-badge"><span class="badge-dot"></span>Available for freelance — worldwide</div>
+    <h1 class="hero-h1">Actuarial &amp;<br><em>Quantitative</em><br>Engineering.</h1>
+    <p class="hero-sub">I help insurance firms, finance teams, and startups make sense of complex data — through rigorous statistical models, real-time trading systems, and decision-ready analytics.</p>
+    <div class="hero-actions">
+      <a class="btn-gold" href="#projects">View Projects</a>
+      <a class="btn-outline" href="#contact">Start a Project</a>
+    </div>
+    <div class="platform-links">
+      <a class="pl-link pl-fiverr" href="https://fiverr.com/YOURPROFILE" target="_blank"><i class="ti ti-brand-fiverr"></i>Fiverr</a>
+      <a class="pl-link pl-upwork" href="https://upwork.com/freelancers/YOURPROFILE" target="_blank"><i class="ti ti-briefcase"></i>Upwork</a>
+      <a class="pl-link pl-freelancer" href="https://freelancer.com/u/YOURPROFILE" target="_blank"><i class="ti ti-user-check"></i>Freelancer</a>
+      <a class="pl-link pl-linkedin" href="https://linkedin.com/in/yesindata" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
+    </div>
+  </div>
+  <div class="hero-aside">
+    <div class="profile-photo">
+      <img src="www/photo.jpg" alt="Yassine L. — Actuary & Quant Engineer" onerror="this.src='https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=600&q=80'">
+      <div class="profile-overlay">
+        <div class="profile-name">Yassine L.</div>
+        <div class="profile-title">Actuary &amp; Quant Engineer</div>
+      </div>
+    </div>
+    <div class="aside-stats">
+      <div class="aside-stat"><div class="aside-label">Qualification</div><div class="aside-val">MSc</div><div class="aside-note">Actuarial Science &amp; Quantitative Finance</div></div>
+      <div class="aside-stat"><div class="aside-label">Technologies</div><div class="aside-val">12+</div><div class="aside-note">R · Python · SAS · Power BI · VBA · Binance API</div></div>
+      <div class="aside-stat"><div class="aside-label">Availability</div><div class="aside-val">Open</div><div class="aside-note">Gigs · Contracts · Consulting</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker" aria-hidden="true">
+  <div class="ticker-inner">
+    <span class="ticker-item">Actuarial Modeling</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Power BI</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">GLM &amp; Survival Analysis</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Binance API &amp; WebSocket</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Time Series</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Excel / VBA</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Econometrics</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">R &amp; Python</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">SAS &amp; SPSS</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Risk Modeling</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Actuarial Modeling</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Power BI</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">GLM &amp; Survival Analysis</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Binance API &amp; WebSocket</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Time Series</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Excel / VBA</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Econometrics</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">R &amp; Python</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">SAS &amp; SPSS</span><span class="ticker-sep">·</span>
+    <span class="ticker-item">Risk Modeling</span><span class="ticker-sep">·</span>
+  </div>
+</div>
+
+<!-- SERVICES -->
+<section class="svc-sec" id="services">
+  <div class="sec-eyebrow">What I offer</div>
+  <h2 class="sec-title">Services</h2>
+  <div class="svc-grid">
+    <div class="svc"><div class="svc-num">01</div><div class="svc-icon"><i class="ti ti-shield-check"></i></div><div class="svc-title">Actuarial &amp; Risk Modeling</div><p class="svc-desc">Loss reserving, pricing, survival analysis, IBNR estimation, and IFRS 17 compliance work for insurers and consulting firms.</p><div class="svc-tags"><span class="stag">R</span><span class="stag">SAS</span><span class="stag">GLM</span><span class="stag">Survival</span><span class="stag">IFRS 17</span></div></div>
+    <div class="svc"><div class="svc-num">02</div><div class="svc-icon"><i class="ti ti-math"></i></div><div class="svc-title">Statistical Modeling</div><p class="svc-desc">GLM, mixed models, logistic regression, clustering and classification — applied to insurance, finance, or business datasets with full validation.</p><div class="svc-tags"><span class="stag">GLM</span><span class="stag">Python</span><span class="stag">R</span><span class="stag">SPSS</span><span class="stag">SAS</span></div></div>
+    <div class="svc"><div class="svc-num">03</div><div class="svc-icon"><i class="ti ti-trending-up"></i></div><div class="svc-title">Econometrics &amp; Forecasting</div><p class="svc-desc">ARIMA, GARCH, VAR, panel data regression, and macro forecasting for economists, policy analysts, and finance researchers.</p><div class="svc-tags"><span class="stag">ARIMA</span><span class="stag">GARCH</span><span class="stag">VAR</span><span class="stag">EViews</span><span class="stag">R</span></div></div>
+    <div class="svc"><div class="svc-num">04</div><div class="svc-icon"><i class="ti ti-chart-bar"></i></div><div class="svc-title">Power BI &amp; Analytics</div><p class="svc-desc">End-to-end BI solutions: data modeling, DAX, interactive dashboards and automated reporting pipelines connected to your data sources.</p><div class="svc-tags"><span class="stag">Power BI</span><span class="stag">DAX</span><span class="stag">SQL</span><span class="stag">Power Query</span></div></div>
+    <div class="svc"><div class="svc-num">05</div><div class="svc-icon"><i class="ti ti-table"></i></div><div class="svc-title">Excel / VBA Automation</div><p class="svc-desc">Custom financial models, automated reporting tools, Monte Carlo simulators, and full VBA applications that eliminate manual workflows.</p><div class="svc-tags"><span class="stag">VBA</span><span class="stag">Excel</span><span class="stag">Monte Carlo</span><span class="stag">Automation</span></div></div>
+    <div class="svc"><div class="svc-num">06</div><div class="svc-icon"><i class="ti ti-robot"></i></div><div class="svc-title">Crypto Trading Bots</div><p class="svc-desc">Algorithmic trading systems on Binance API and WebSocket with asyncio — real-time execution, custom strategy logic, backtesting and monitoring.</p><div class="svc-tags"><span class="stag">Binance API</span><span class="stag">WebSocket</span><span class="stag">asyncio</span><span class="stag">Python</span></div></div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="proj-sec" id="projects">
+  <div class="sec-eyebrow">Selected work</div>
+  <h2 class="sec-title">Project Case Studies</h2>
+  <div class="proj-list">
+
+    <!-- PROJECT 1 -->
+    <div class="proj-row">
+      <div class="proj-header" onclick="toggleProj(this)">
+        <div class="proj-idx">Project 01</div>
+        <div>
+          <div class="proj-name">P&amp;C Loss Reserve Estimation</div>
+          <div class="proj-cat">Actuarial &amp; Risk Modeling</div>
+          <div class="proj-tags-row"><span class="ptag">R</span><span class="ptag">GLM</span><span class="ptag">Chain-Ladder</span><span class="ptag">Bootstrap</span><span class="ptag">IBNR</span></div>
+        </div>
+        <div class="proj-toggle">Details <i class="ti ti-chevron-down"></i></div>
+      </div>
+      <div class="proj-detail">
+        <div class="img-strip-wrap">
+          <div class="img-strip-track">
+            <div class="img-strip-item"><img src="www/proj1_a.jpg" alt="Development triangle" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&q=70'"><div class="img-strip-caption">Development triangle</div></div>
+            <div class="img-strip-item"><img src="www/proj1_b.jpg" alt="Bootstrap CI" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&q=70'"><div class="img-strip-caption">Bootstrap confidence bands</div></div>
+            <div class="img-strip-item"><img src="www/proj1_c.jpg" alt="Reserve report" onerror="this.src='https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=560&q=70'"><div class="img-strip-caption">Reserve run report</div></div>
+            <div class="img-strip-item"><img src="www/proj1_d.jpg" alt="Stress scenarios" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=560&q=70'"><div class="img-strip-caption">Stress scenarios</div></div>
+            <div class="img-strip-item"><img src="www/proj1_a.jpg" alt="Development triangle" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&q=70'"><div class="img-strip-caption">Development triangle</div></div>
+            <div class="img-strip-item"><img src="www/proj1_b.jpg" alt="Bootstrap CI" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&q=70'"><div class="img-strip-caption">Bootstrap confidence bands</div></div>
+            <div class="img-strip-item"><img src="www/proj1_c.jpg" alt="Reserve report" onerror="this.src='https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=560&q=70'"><div class="img-strip-caption">Reserve run report</div></div>
+            <div class="img-strip-item"><img src="www/proj1_d.jpg" alt="Stress scenarios" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=560&q=70'"><div class="img-strip-caption">Stress scenarios</div></div>
+          </div>
+        </div>
+        <div class="proj-detail-body">
+          <div>
+            <div class="detail-label">Challenge</div>
+            <p class="detail-text">A mid-size P&amp;C insurer needed to modernize its loss reserving process. Their chain-ladder method produced wide uncertainty ranges, making capital allocation unreliable. They needed statistically rigorous estimates with confidence intervals, scenario analysis, and a fully auditable workflow.</p>
+            <div class="results-row">
+              <div class="res-card"><div class="res-val">±4.2%</div><div class="res-label">Reserve estimation error reduced</div></div>
+              <div class="res-card"><div class="res-val">3×</div><div class="res-label">Faster reserve run completion</div></div>
+              <div class="res-card"><div class="res-val">95%</div><div class="res-label">Bootstrap CI coverage achieved</div></div>
+            </div>
+          </div>
+          <div>
+            <div class="detail-label">Methodology &amp; Deliverables</div>
+            <p class="method-text">Implemented a <strong>GLM-based chain-ladder model</strong> in R using the ChainLadder package, extended with bootstrapping to quantify reserve uncertainty. Applied Over-Dispersed Poisson model across 5 accident years with tail factor selection using exponential curve fitting.</p>
+            <p class="method-text" style="margin-top:.6rem">Delivered an automated <strong>R Markdown report</strong> with development triangles, Bornhuetter-Ferguson cross-checks, and three stress scenarios. Fully documented for internal audit.</p>
+            <div class="tool-list">
+              <span class="tool-chip"><i class="ti ti-brand-r"></i>R</span>
+              <span class="tool-chip"><i class="ti ti-package"></i>ChainLadder</span>
+              <span class="tool-chip"><i class="ti ti-chart-dots"></i>ggplot2</span>
+              <span class="tool-chip"><i class="ti ti-file-text"></i>R Markdown</span>
+              <span class="tool-chip"><i class="ti ti-refresh"></i>Bootstrap</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 2 -->
+    <div class="proj-row">
+      <div class="proj-header" onclick="toggleProj(this)">
+        <div class="proj-idx">Project 02</div>
+        <div>
+          <div class="proj-name">Sales Performance Dashboard</div>
+          <div class="proj-cat">Power BI &amp; Data Analytics</div>
+          <div class="proj-tags-row"><span class="ptag">Power BI</span><span class="ptag">DAX</span><span class="ptag">SQL Server</span><span class="ptag">Power Query</span></div>
+        </div>
+        <div class="proj-toggle">Details <i class="ti ti-chevron-down"></i></div>
+      </div>
+      <div class="proj-detail">
+        <div class="img-strip-wrap">
+          <div class="img-strip-track">
+            <div class="img-strip-item"><img src="www/proj2_a.jpg" alt="KPI dashboard" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&q=70'"><div class="img-strip-caption">KPI overview page</div></div>
+            <div class="img-strip-item"><img src="www/proj2_b.jpg" alt="Regional map" onerror="this.src='https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=560&q=70'"><div class="img-strip-caption">Regional heatmap</div></div>
+            <div class="img-strip-item"><img src="www/proj2_c.jpg" alt="Data model" onerror="this.src='https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=560&q=70'"><div class="img-strip-caption">Star schema data model</div></div>
+            <div class="img-strip-item"><img src="www/proj2_d.jpg" alt="Live refresh" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&q=70'"><div class="img-strip-caption">Live refresh pipeline</div></div>
+            <div class="img-strip-item"><img src="www/proj2_a.jpg" alt="KPI dashboard" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&q=70'"><div class="img-strip-caption">KPI overview page</div></div>
+            <div class="img-strip-item"><img src="www/proj2_b.jpg" alt="Regional map" onerror="this.src='https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=560&q=70'"><div class="img-strip-caption">Regional heatmap</div></div>
+            <div class="img-strip-item"><img src="www/proj2_c.jpg" alt="Data model" onerror="this.src='https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=560&q=70'"><div class="img-strip-caption">Star schema data model</div></div>
+            <div class="img-strip-item"><img src="www/proj2_d.jpg" alt="Live refresh" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&q=70'"><div class="img-strip-caption">Live refresh pipeline</div></div>
+          </div>
+        </div>
+        <div class="proj-detail-body">
+          <div>
+            <div class="detail-label">Challenge</div>
+            <p class="detail-text">A retail distribution company had sales data across three disconnected systems — ERP, CRM, and a legacy Excel tracker. Management had no real-time visibility into regional performance, margins, or rep-level KPIs. Monthly reporting took 3 days of manual effort.</p>
+            <div class="results-row">
+              <div class="res-card"><div class="res-val">3 days</div><div class="res-label">Weekly reporting time eliminated</div></div>
+              <div class="res-card"><div class="res-val">12</div><div class="res-label">KPI pages across 3 sources</div></div>
+              <div class="res-card"><div class="res-val">Live</div><div class="res-label">Real-time refresh via SQL</div></div>
+            </div>
+          </div>
+          <div>
+            <div class="detail-label">Methodology &amp; Deliverables</div>
+            <p class="method-text">Unified all data sources in <strong>Power Query</strong>, built a star-schema model, and created 12 DAX measures covering YTD revenue, margin %, rep rankings, and regional heatmaps. Deployed on <strong>Power BI Service</strong> with row-level security per region manager.</p>
+            <p class="method-text" style="margin-top:.6rem">Delivered with a written <strong>data dictionary</strong> and 1-hour handover training. Mobile-optimized layout included.</p>
+            <div class="tool-list">
+              <span class="tool-chip"><i class="ti ti-chart-bar"></i>Power BI</span>
+              <span class="tool-chip"><i class="ti ti-code"></i>DAX</span>
+              <span class="tool-chip"><i class="ti ti-transform"></i>Power Query</span>
+              <span class="tool-chip"><i class="ti ti-database"></i>SQL Server</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 3 -->
+    <div class="proj-row">
+      <div class="proj-header" onclick="toggleProj(this)">
+        <div class="proj-idx">Project 03</div>
+        <div>
+          <div class="proj-name">VBA Financial Reporting Automator</div>
+          <div class="proj-cat">Excel / VBA Automation</div>
+          <div class="proj-tags-row"><span class="ptag">VBA</span><span class="ptag">Excel</span><span class="ptag">Automation</span><span class="ptag">Finance</span></div>
+        </div>
+        <div class="proj-toggle">Details <i class="ti ti-chevron-down"></i></div>
+      </div>
+      <div class="proj-detail">
+        <div class="img-strip-wrap">
+          <div class="img-strip-track">
+            <div class="img-strip-item"><img src="www/proj3_a.jpg" alt="Excel template" onerror="this.src='https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=560&q=70'"><div class="img-strip-caption">Master Excel template</div></div>
+            <div class="img-strip-item"><img src="www/proj3_b.jpg" alt="VBA editor" onerror="this.src='https://images.unsplash.com/photo-1542621334-a254cf47733d?w=560&q=70'"><div class="img-strip-caption">VBA macro suite</div></div>
+            <div class="img-strip-item"><img src="www/proj3_c.jpg" alt="PDF export" onerror="this.src='https://images.unsplash.com/photo-1568952433726-3896e3881c65?w=560&q=70'"><div class="img-strip-caption">PDF export output</div></div>
+            <div class="img-strip-item"><img src="www/proj3_d.jpg" alt="Audit trail" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=560&q=70'"><div class="img-strip-caption">Audit trail log</div></div>
+            <div class="img-strip-item"><img src="www/proj3_a.jpg" alt="Excel template" onerror="this.src='https://images.unsplash.com/photo-1504868584819-f8e8b4b6d7e3?w=560&q=70'"><div class="img-strip-caption">Master Excel template</div></div>
+            <div class="img-strip-item"><img src="www/proj3_b.jpg" alt="VBA editor" onerror="this.src='https://images.unsplash.com/photo-1542621334-a254cf47733d?w=560&q=70'"><div class="img-strip-caption">VBA macro suite</div></div>
+            <div class="img-strip-item"><img src="www/proj3_c.jpg" alt="PDF export" onerror="this.src='https://images.unsplash.com/photo-1568952433726-3896e3881c65?w=560&q=70'"><div class="img-strip-caption">PDF export output</div></div>
+            <div class="img-strip-item"><img src="www/proj3_d.jpg" alt="Audit trail" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=560&q=70'"><div class="img-strip-caption">Audit trail log</div></div>
+          </div>
+        </div>
+        <div class="proj-detail-body">
+          <div>
+            <div class="detail-label">Challenge</div>
+            <p class="detail-text">A finance team at an asset management firm spent 6+ hours monthly compiling fund performance reports from 8 Excel source files into a formatted client PDF. Errors were frequent, the process was not auditable, and it required a dedicated analyst every month-end.</p>
+            <div class="results-row">
+              <div class="res-card"><div class="res-val">6h→4min</div><div class="res-label">Monthly reporting time</div></div>
+              <div class="res-card"><div class="res-val">Zero</div><div class="res-label">Manual copy-paste errors</div></div>
+              <div class="res-card"><div class="res-val">8</div><div class="res-label">Source files consolidated</div></div>
+            </div>
+          </div>
+          <div>
+            <div class="detail-label">Methodology &amp; Deliverables</div>
+            <p class="method-text">Built a <strong>VBA macro suite</strong> that loops through all source workbooks, extracts metrics via dynamic named ranges, populates a master template, applies conditional formatting, and exports a timestamped PDF — triggered by a single button click.</p>
+            <p class="method-text" style="margin-top:.6rem">Includes an <strong>error log sheet</strong>, full audit trail, and a configuration panel so the finance team can update file paths without touching VBA code.</p>
+            <div class="tool-list">
+              <span class="tool-chip"><i class="ti ti-table"></i>Excel VBA</span>
+              <span class="tool-chip"><i class="ti ti-file-export"></i>PDF Export</span>
+              <span class="tool-chip"><i class="ti ti-variable"></i>Dynamic Ranges</span>
+              <span class="tool-chip"><i class="ti ti-list-check"></i>Error Logging</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="proj-row">
+      <div class="proj-header" onclick="toggleProj(this)">
+        <div class="proj-idx">Project 04</div>
+        <div>
+          <div class="proj-name">Inflation Forecasting Model</div>
+          <div class="proj-cat">Econometrics &amp; Forecasting</div>
+          <div class="proj-tags-row"><span class="ptag">R</span><span class="ptag">ARIMA</span><span class="ptag">VAR</span><span class="ptag">Cointegration</span><span class="ptag">EViews</span></div>
+        </div>
+        <div class="proj-toggle">Details <i class="ti ti-chevron-down"></i></div>
+      </div>
+      <div class="proj-detail">
+        <div class="img-strip-wrap">
+          <div class="img-strip-track">
+            <div class="img-strip-item"><img src="www/proj4_a.jpg" alt="Unit root tests" onerror="this.src='https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=560&q=70'"><div class="img-strip-caption">Unit root tests</div></div>
+            <div class="img-strip-item"><img src="www/proj4_b.jpg" alt="Fan chart" onerror="this.src='https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=560&q=70'"><div class="img-strip-caption">12-month fan chart</div></div>
+            <div class="img-strip-item"><img src="www/proj4_c.jpg" alt="IRF plots" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&q=70'"><div class="img-strip-caption">Impulse response functions</div></div>
+            <div class="img-strip-item"><img src="www/proj4_d.jpg" alt="Research report" onerror="this.src='https://images.unsplash.com/photo-1568952433726-3896e3881c65?w=560&q=70'"><div class="img-strip-caption">30-page research report</div></div>
+            <div class="img-strip-item"><img src="www/proj4_a.jpg" alt="Unit root tests" onerror="this.src='https://images.unsplash.com/photo-1543286386-2e659306cd6c?w=560&q=70'"><div class="img-strip-caption">Unit root tests</div></div>
+            <div class="img-strip-item"><img src="www/proj4_b.jpg" alt="Fan chart" onerror="this.src='https://images.unsplash.com/photo-1526628953301-3e589a6a8b74?w=560&q=70'"><div class="img-strip-caption">12-month fan chart</div></div>
+            <div class="img-strip-item"><img src="www/proj4_c.jpg" alt="IRF plots" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&q=70'"><div class="img-strip-caption">Impulse response functions</div></div>
+            <div class="img-strip-item"><img src="www/proj4_d.jpg" alt="Research report" onerror="this.src='https://images.unsplash.com/photo-1568952433726-3896e3881c65?w=560&q=70'"><div class="img-strip-caption">30-page research report</div></div>
+          </div>
+        </div>
+        <div class="proj-detail-body">
+          <div>
+            <div class="detail-label">Challenge</div>
+            <p class="detail-text">An economics research institute needed a short-term inflation forecasting model for a North African economy. The goal was to compare univariate vs. multivariate approaches and quantify forecast uncertainty over a 12-month horizon, delivered as a publication-ready report.</p>
+            <div class="results-row">
+              <div class="res-card"><div class="res-val">12mo</div><div class="res-label">Forecast horizon with CIs</div></div>
+              <div class="res-card"><div class="res-val">4</div><div class="res-label">Models compared by RMSE</div></div>
+              <div class="res-card"><div class="res-val">VAR(3)</div><div class="res-label">Best performing specification</div></div>
+            </div>
+          </div>
+          <div>
+            <div class="detail-label">Methodology &amp; Deliverables</div>
+            <p class="method-text">Conducted <strong>ADF/KPSS unit root tests</strong>, Johansen cointegration, and estimated ARIMA(2,1,1), ARIMAX, VAR(3), and VECM on CPI, M2, exchange rate, and oil price series. Selected VAR(3) by rolling-window cross-validation.</p>
+            <p class="method-text" style="margin-top:.6rem">Delivered a <strong>30-page research report</strong> with full diagnostic tables, IRF plots, variance decomposition, and a 12-month fan chart with 80% and 95% confidence bands.</p>
+            <div class="tool-list">
+              <span class="tool-chip"><i class="ti ti-brand-r"></i>R</span>
+              <span class="tool-chip"><i class="ti ti-trending-up"></i>EViews</span>
+              <span class="tool-chip"><i class="ti ti-arrows-split-2"></i>VAR/VECM</span>
+              <span class="tool-chip"><i class="ti ti-chart-dots"></i>ggplot2</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- PROJECT 5 -->
+    <div class="proj-row">
+      <div class="proj-header" onclick="toggleProj(this)">
+        <div class="proj-idx">Project 05</div>
+        <div>
+          <div class="proj-name">Time Series Demand Forecasting</div>
+          <div class="proj-cat">Statistical Modeling</div>
+          <div class="proj-tags-row"><span class="ptag">Python</span><span class="ptag">Prophet</span><span class="ptag">SARIMA</span><span class="ptag">scikit-learn</span></div>
+        </div>
+        <div class="proj-toggle">Details <i class="ti ti-chevron-down"></i></div>
+      </div>
+      <div class="proj-detail">
+        <div class="img-strip-wrap">
+          <div class="img-strip-track">
+            <div class="img-strip-item"><img src="www/proj5_a.jpg" alt="Seasonality" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&q=70'"><div class="img-strip-caption">Seasonality decomposition</div></div>
+            <div class="img-strip-item"><img src="www/proj5_b.jpg" alt="Forecast" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=560&q=70'"><div class="img-strip-caption">90-day forecast output</div></div>
+            <div class="img-strip-item"><img src="www/proj5_c.jpg" alt="Pipeline" onerror="this.src='https://images.unsplash.com/photo-1542621334-a254cf47733d?w=560&q=70'"><div class="img-strip-caption">Automated Python pipeline</div></div>
+            <div class="img-strip-item"><img src="www/proj5_d.jpg" alt="Dashboard" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&q=70'"><div class="img-strip-caption">Ops Power BI dashboard</div></div>
+            <div class="img-strip-item"><img src="www/proj5_a.jpg" alt="Seasonality" onerror="this.src='https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=560&q=70'"><div class="img-strip-caption">Seasonality decomposition</div></div>
+            <div class="img-strip-item"><img src="www/proj5_b.jpg" alt="Forecast" onerror="this.src='https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?w=560&q=70'"><div class="img-strip-caption">90-day forecast output</div></div>
+            <div class="img-strip-item"><img src="www/proj5_c.jpg" alt="Pipeline" onerror="this.src='https://images.unsplash.com/photo-1542621334-a254cf47733d?w=560&q=70'"><div class="img-strip-caption">Automated Python pipeline</div></div>
+            <div class="img-strip-item"><img src="www/proj5_d.jpg" alt="Dashboard" onerror="this.src='https://images.unsplash.com/photo-1551288049-bebda4e38f71?w=560&q=70'"><div class="img-strip-caption">Ops Power BI dashboard</div></div>
+          </div>
+        </div>
+        <div class="proj-detail-body">
+          <div>
+            <div class="detail-label">Challenge</div>
+            <p class="detail-text">A logistics company needed to forecast daily parcel volumes across 15 regional hubs for 90 days to optimize staffing and vehicle allocation. Data had strong weekly seasonality, public holiday effects, and COVID-era structural breaks.</p>
+            <div class="results-row">
+              <div class="res-card"><div class="res-val">90 days</div><div class="res-label">Rolling forecast horizon</div></div>
+              <div class="res-card"><div class="res-val">8.3%</div><div class="res-label">MAPE across all 15 hubs</div></div>
+              <div class="res-card"><div class="res-val">15</div><div class="res-label">Regional models automated</div></div>
+            </div>
+          </div>
+          <div>
+            <div class="detail-label">Methodology &amp; Deliverables</div>
+            <p class="method-text">Fitted <strong>SARIMA and Facebook Prophet</strong> per hub with custom holiday calendars and changepoint detection. Ensemble forecast selected by hub-level cross-validation. Retrains weekly on new data automatically.</p>
+            <p class="method-text" style="margin-top:.6rem">Delivered as a <strong>Python pipeline</strong> with CSV forecasts and a Power BI operations dashboard. Includes alerts flagging hubs where forecast error exceeds a configurable threshold.</p>
+            <div class="tool-list">
+              <span class="tool-chip"><i class="ti ti-brand-python"></i>Python</span>
+              <span class="tool-chip"><i class="ti ti-chart-area"></i>Prophet</span>
+              <span class="tool-chip"><i class="ti ti-wave-sine"></i>SARIMA</span>
+              <span class="tool-chip"><i class="ti ti-brain"></i>scikit-learn</span>
+              <span class="tool-chip"><i class="ti ti-chart-bar"></i>Power BI</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section class="cert-sec" id="certifications">
+  <div class="sec-eyebrow">Credentials</div>
+  <h2 class="sec-title">Certifications</h2>
+  <div class="cert-grid">
+    <div class="cert-card"><div class="cert-icon"><i class="ti ti-school"></i></div><div class="cert-title">Master of Science</div><div class="cert-org">Actuarial Science &amp; Quantitative Finance</div><p class="cert-desc">Graduate-level training in risk theory, stochastic processes, financial mathematics, statistical inference, and survival models.</p><span class="cert-badge">Add your university</span></div>
+    <div class="cert-card"><div class="cert-icon"><i class="ti ti-certificate"></i></div><div class="cert-title">Microsoft Power BI Data Analyst</div><div class="cert-org">Microsoft Certified — PL-300</div><p class="cert-desc">Official Microsoft certification covering data preparation, modeling, visualization, and deployment of Power BI solutions.</p><span class="cert-badge">Add year / credential ID</span></div>
+    <div class="cert-card"><div class="cert-icon"><i class="ti ti-brand-python"></i></div><div class="cert-title">Python for Data Science &amp; ML</div><div class="cert-org">Add your certification body</div><p class="cert-desc">Advanced Python programming for data analytics, machine learning pipelines, time series analysis, and production deployment.</p><span class="cert-badge">Add year / credential ID</span></div>
+    <div class="cert-card"><div class="cert-icon"><i class="ti ti-math-integral-x"></i></div><div class="cert-title">SAS Certified Specialist</div><div class="cert-org">SAS Institute</div><p class="cert-desc">Certified proficiency in SAS Base programming, statistical procedures, and data management for insurance and financial applications.</p><span class="cert-badge">Add year / credential ID</span></div>
+    <div class="cert-card"><div class="cert-icon"><i class="ti ti-currency-bitcoin"></i></div><div class="cert-title">Algorithmic Trading</div><div class="cert-org">Add your certification body</div><p class="cert-desc">Quantitative strategy design, backtesting frameworks, risk management, and live deployment on crypto exchanges via API.</p><span class="cert-badge">Add year / credential ID</span></div>
+    <div class="cert-card"><div class="cert-icon"><i class="ti ti-plus"></i></div><div class="cert-title">Add Your Certification</div><div class="cert-org">Your certification body here</div><p class="cert-desc">Replace this card with any additional certification, professional exam (CT3, CS1, etc.), or course completion you want to highlight.</p><span class="cert-badge">Edit this card</span></div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about-sec" id="about">
+  <div class="sec-eyebrow">Who I am</div>
+  <h2 class="sec-title">About</h2>
+  <div class="about-grid">
+    <div class="about-text">
+      <p>I am a freelance actuary and quantitative engineer with a Master's degree, specializing in the intersection of statistical rigor and practical business value. My work spans the full spectrum from classical actuarial science to modern machine learning and real-time financial systems.</p>
+      <p>I have built loss reserve models for insurers, automated reporting systems for finance teams, econometric research for academic institutions, and algorithmic trading bots for crypto markets — always with the same commitment: clean methodology, clear documentation, and results you can act on.</p>
+      <p>I work remotely with clients in the US, Canada, Europe, and the Middle East. I deliver in English and French, and adapt to your timeline, tools, and reporting standards.</p>
+    </div>
+    <div class="creds">
+      <div class="cred"><div class="cred-ico"><i class="ti ti-school"></i></div><div><div class="cred-title">MSc — Actuarial Science &amp; Quantitative Finance</div><div class="cred-desc">Graduate-level training in risk theory, stochastic processes, financial mathematics, and statistical inference.</div></div></div>
+      <div class="cred"><div class="cred-ico"><i class="ti ti-shield-check"></i></div><div><div class="cred-title">Actuarial Practice</div><div class="cred-desc">Hands-on experience in P&amp;C pricing, reserving, and capital modeling using SAS, R, and Excel.</div></div></div>
+      <div class="cred"><div class="cred-ico"><i class="ti ti-currency-bitcoin"></i></div><div><div class="cred-title">Algorithmic Trading</div><div class="cred-desc">Built and deployed production crypto bots on Binance using Python asyncio and WebSocket streams.</div></div></div>
+      <div class="cred"><div class="cred-ico"><i class="ti ti-world"></i></div><div><div class="cred-title">International Clients</div><div class="cred-desc">Serving clients in North America, Europe, and the Middle East. Fluent in English and French.</div></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section class="skills-sec" id="skills">
+  <div class="sec-eyebrow">Technical proficiency</div>
+  <h2 class="sec-title">Skills &amp; Tools</h2>
+  <div class="sk-grid">
+    <div class="sk-block">
+      <div class="sk-block-title">Programming &amp; Statistics</div>
+      <div class="sk-list">
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-brand-r sk-icon"></i><span class="sk-name">R</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:95%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-brand-python sk-icon"></i><span class="sk-name">Python</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:90%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-math-integral-x sk-icon"></i><span class="sk-name">SAS</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:85%"></div></div><span class="sk-lvl">Advanced</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-calculator sk-icon"></i><span class="sk-name">SPSS</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:80%"></div></div><span class="sk-lvl">Advanced</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-database sk-icon"></i><span class="sk-name">SQL</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:78%"></div></div><span class="sk-lvl">Advanced</span></div>
+      </div>
+    </div>
+    <div class="sk-block">
+      <div class="sk-block-title">Visualization &amp; BI</div>
+      <div class="sk-list">
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-chart-bar sk-icon"></i><span class="sk-name">Power BI</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:95%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-table sk-icon"></i><span class="sk-name">Excel / VBA</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:95%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-chart-dots sk-icon"></i><span class="sk-name">ggplot2</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:88%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-chart-area sk-icon"></i><span class="sk-name">Plotly</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:80%"></div></div><span class="sk-lvl">Advanced</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-chart-line sk-icon"></i><span class="sk-name">Tableau</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:70%"></div></div><span class="sk-lvl">Proficient</span></div>
+      </div>
+    </div>
+    <div class="sk-block">
+      <div class="sk-block-title">Actuarial &amp; Econometrics</div>
+      <div class="sk-list">
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-math sk-icon"></i><span class="sk-name">GLM / GAM</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:92%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-wave-sine sk-icon"></i><span class="sk-name">Time Series</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:90%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-activity sk-icon"></i><span class="sk-name">Survival Analysis</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:88%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-trending-up sk-icon"></i><span class="sk-name">Econometrics</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:85%"></div></div><span class="sk-lvl">Advanced</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-dice sk-icon"></i><span class="sk-name">Monte Carlo</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:82%"></div></div><span class="sk-lvl">Advanced</span></div>
+      </div>
+    </div>
+    <div class="sk-block">
+      <div class="sk-block-title">Finance &amp; Trading</div>
+      <div class="sk-list">
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-currency-bitcoin sk-icon"></i><span class="sk-name">Binance API</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:92%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-broadcast sk-icon"></i><span class="sk-name">WebSocket</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:90%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-rotate-clockwise sk-icon"></i><span class="sk-name">asyncio</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:88%"></div></div><span class="sk-lvl">Expert</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-history sk-icon"></i><span class="sk-name">Backtesting</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:84%"></div></div><span class="sk-lvl">Advanced</span></div>
+        <div class="sk-row"><div class="sk-name-wrap"><i class="ti ti-shield sk-icon"></i><span class="sk-name">Risk Modeling</span></div><div class="sk-bar-bg"><div class="sk-bar" style="width:88%"></div></div><span class="sk-lvl">Advanced</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact-sec" id="contact">
+  <div class="sec-eyebrow">Work with me</div>
+  <h2 class="sec-title">Get in Touch</h2>
+  <div class="c-grid">
+    <div>
+      <p class="c-intro">Available for freelance projects, short-term contracts, and long-term consulting. I work with clients in the US, Canada, and worldwide — fully remote, on your timeline.</p>
+      <div class="c-platforms">
+        <div class="c-plat-label">Find me on</div>
+        <div class="c-plat-links">
+          <a class="c-plat-link c-fiverr" href="https://fiverr.com/YOURPROFILE" target="_blank"><i class="ti ti-brand-fiverr"></i>Fiverr</a>
+          <a class="c-plat-link c-upwork" href="https://upwork.com/freelancers/YOURPROFILE" target="_blank"><i class="ti ti-briefcase"></i>Upwork</a>
+          <a class="c-plat-link c-freelancer" href="https://freelancer.com/u/YOURPROFILE" target="_blank"><i class="ti ti-user-check"></i>Freelancer</a>
+          <a class="c-plat-link c-linkedin" href="https://linkedin.com/in/yesindata" target="_blank"><i class="ti ti-brand-linkedin"></i>LinkedIn</a>
+        </div>
+      </div>
+      <div class="c-items">
+        <div class="c-item"><i class="ti ti-mail c-item-icon"></i><span class="c-item-label">Email</span><span class="c-item-val">your.email@example.com</span></div>
+        <div class="c-item"><i class="ti ti-map-pin c-item-icon"></i><span class="c-item-label">Location</span><span class="c-item-val">Casablanca, Morocco — remote worldwide</span></div>
+        <div class="c-item"><i class="ti ti-language c-item-icon"></i><span class="c-item-label">Languages</span><span class="c-item-val">English · French</span></div>
+        <div class="c-item"><i class="ti ti-clock c-item-icon"></i><span class="c-item-label">Response</span><span class="c-item-val">Within 24 hours</span></div>
+        <div class="c-item"><i class="ti ti-currency-dollar c-item-icon"></i><span class="c-item-label">Rate</span><span class="c-item-val">From $30/hr · Fixed price available</span></div>
+      </div>
+    </div>
+    <form class="c-form" id="contactForm" novalidate>
+      <div class="f2">
+        <div class="fg" id="fg-name">
+          <label>Name</label>
+          <input type="text" id="f-name" placeholder="Your full name">
+        </div>
+        <div class="fg" id="fg-email">
+          <label>Email <span class="req">*</span></label>
+          <input type="email" id="f-email" placeholder="your@email.com">
+          <span class="field-err">Please enter a valid email address.</span>
+        </div>
+      </div>
+      <div class="fg" id="fg-service">
+        <label>Service needed <span class="req">*</span></label>
+        <select id="f-service">
+          <option value="">Select a service</option>
+          <option>Actuarial &amp; Risk Modeling</option>
+          <option>Statistical Modeling (GLM, Survival)</option>
+          <option>Econometrics &amp; Forecasting</option>
+          <option>Power BI Dashboard</option>
+          <option>Excel / VBA Automation</option>
+          <option>Crypto Trading Bot</option>
+          <option>Other / Not sure</option>
+        </select>
+        <span class="field-err">Please select a service.</span>
+      </div>
+      <div class="fg">
+        <label>Budget (USD)</label>
+        <select id="f-budget">
+          <option value="">Select a range</option>
+          <option>Under $200</option>
+          <option>$200 – $500</option>
+          <option>$500 – $1,500</option>
+          <option>$1,500 – $5,000</option>
+          <option>$5,000+</option>
+        </select>
+      </div>
+      <div class="fg">
+        <label>Message</label>
+        <textarea id="f-message" placeholder="Describe your project, dataset, deadline, or any questions..."></textarea>
+      </div>
+      <button type="submit" class="btn-send" id="submitBtn">Send Message →</button>
+      <div class="form-msg" id="formMsg"></div>
+    </form>
+  </div>
+</section>
+
+<footer>
+  <span class="f-brand"><span>Yes</span>InData</span>
+  <div class="f-links">
+    <a href="#services">Services</a>
+    <a href="#projects">Projects</a>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#certifications">Certifications</a>
+    <a href="#contact">Contact</a>
+  </div>
+  <span class="f-copy">© 2026 Yassine L. — Available worldwide</span>
+</footer>
+
+<script>
+function toggleProj(header){
+  const detail=header.nextElementSibling;
+  const isOpen=header.classList.contains('open');
+  document.querySelectorAll('.proj-header.open').forEach(h=>{
+    h.classList.remove('open');
+    h.nextElementSibling.classList.remove('open');
+  });
+  if(!isOpen){
+    header.classList.add('open');
+    detail.classList.add('open');
+    setTimeout(()=>header.scrollIntoView({behavior:'smooth',block:'start'}),50);
+  }
+}
+
+document.getElementById('contactForm').addEventListener('submit',function(e){
+  e.preventDefault();
+  let valid=true;
+  const email=document.getElementById('f-email');
+  const service=document.getElementById('f-service');
+  const fgEmail=document.getElementById('fg-email');
+  const fgService=document.getElementById('fg-service');
+  const msg=document.getElementById('formMsg');
+
+  fgEmail.classList.remove('error');
+  fgService.classList.remove('error');
+  msg.style.display='none';
+
+  const emailVal=email.value.trim();
+  const emailOk=/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(emailVal);
+  if(!emailOk){fgEmail.classList.add('error');valid=false;}
+
+  if(!service.value){fgService.classList.add('error');valid=false;}
+
+  if(!valid)return;
+
+  const btn=document.getElementById('submitBtn');
+  btn.disabled=true;
+  btn.textContent='Sending...';
+
+  setTimeout(()=>{
+    msg.className='form-msg success';
+    msg.style.display='block';
+    msg.textContent='Message sent! I will get back to you within 24 hours.';
+    btn.textContent='Sent ✓';
+    document.getElementById('f-name').value='';
+    email.value='';
+    service.value='';
+    document.getElementById('f-budget').value='';
+    document.getElementById('f-message').value='';
+  },1000);
+});
+</script>
+</body>
+</html>
